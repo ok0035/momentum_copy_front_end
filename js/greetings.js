@@ -61,6 +61,7 @@ const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
 const loginButton = document.querySelector("#login-form button");
 const greeting = document.querySelector("#greeting");
+const todoForm = document.querySelector("#todo-form");
 
 const HIDDEN_CLASS_NAME = "hidden";
 const USERNAME_KEY = "username";
@@ -73,6 +74,7 @@ function paintGreetings(username) {
 function onLoginSubmit(e) {
     e.preventDefault();
     loginForm.classList.add(HIDDEN_CLASS_NAME);
+    todoForm.classList.remove(HIDDEN_CLASS_NAME);
     const username = loginInput.value;
     localStorage.setItem(USERNAME_KEY, username);
     // greeting.innerText = "안녕하세요. " + USERNAME_KEY + "님";
@@ -90,8 +92,10 @@ if (saveUsername === null) {
     loginForm.classList.remove(HIDDEN_CLASS_NAME);
     greeting.classList.add(HIDDEN_CLASS_NAME);
     greeting.innerText = "";
+    todoForm.classList.add(HIDDEN_CLASS_NAME);
 } else {
     console.log("logined");
     loginForm.classList.add(HIDDEN_CLASS_NAME);
+    todoForm.classList.remove(HIDDEN_CLASS_NAME);
     paintGreetings(saveUsername);
 }
